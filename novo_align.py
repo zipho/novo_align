@@ -2,12 +2,9 @@
 
 from __future__ import print_function
 import argparse
-from subprocess import check_call, CalledProcessError
-from json import load, dump, dumps
-from os import environ, mkdir, makedirs, path
-from os.path import isdir, exists
+from subprocess import check_call, CalledProcessError, Popen
 import shlex
-import sys
+import os
 import logging
 log = logging.getLogger( __name__ )
 
@@ -16,18 +13,20 @@ def novo_align(output_filename, index_filename, fwd_file, rev_file ):
     #         -f X165_820L8_.R1_val_1.fq  X165_820L8_.R2_val_2.fq -i PE 250,100
     #         -o SAM '@RG\tID:readgroup\tPU:platform unit\tLB:library' | samtools view -bS - > `pwd`/out/X165_820L8.bam
     #output_filename = path.join(output_directory, fwd_file.split(".")[0] + ".bam")
-    param = r'@RG\tID:readgroup\tPU:platform unit\tLB:library'
+    param = r'@RG\tID:RG\tSM:$i\tPL:ILLUMINA'
     cmdline_str = "novoalign -c 8 -k -d {} -f {} {} -i PE 250, 100 -o SAM '{}' | samtools view -bS - > {}".format(
         index_filename,
         fwd_file,
         rev_file,
         param,
         output_filename)
-    cmdline = newSplit(cmdline_str)
-    try:
-        check_call(cmdline)
-    except CalledProcessError:
-        print("Error running the nova-align", file=sys.stderr)
+    #cmdline = newSplit(cmdline_str)
+
+    os.system(cmdline_str)
+    #try:
+    #check_call(cmdline)
+    #except CalledProcessError:
+    #    print("Error running the nova-align", file=sys.stderr)
 
 def newSplit(value):
     lex = shlex.shlex(value)
