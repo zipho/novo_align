@@ -3,6 +3,7 @@
     <description>Tool to run the Novo Align mapping tool</description>
     <requirements>
         <requirement type="package" version="1.2">samtools</requirement>
+        <requirement type="package" version="3.04.01">novocraft</requirement>
     </requirements>
     <stdio>
         <exit_code range=":-1" />
