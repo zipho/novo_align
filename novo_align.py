@@ -34,7 +34,7 @@ def main():
     parser.add_argument('--reverse_filename')
     args = parser.parse_args()
    
-    #a dirty way of referencing the file
+    # a dirty way of referencing the file
     index_file_path = args.index_filename + "/" + args.index_filename.split("/")[-1]
     novo_align(args.output_filename, index_file_path, args.forward_filename, args.reverse_filename)
 
