@@ -13,8 +13,8 @@
         novo_align.py '${out_file}' --index_file ${index1.fields.path} --forward_file ${fastq_input1} --reverse_file ${fastq_input2}
     </command>
     <inputs>
-        <param name="fastq_input1" type="data" format="fasta, fastq, fastqsanger" label="Select first set of reads" help="Specify dataset with forward reads"/>
-        <param name="fastq_input2" type="data" format="fasta, fastq, fastqsanger" label="Select second set of reads" help="Specify dataset with reverse reads"/>
+        <param name="fastq_input1" type="data" format="fastqsanger" label="Select first set of reads" help="Specify dataset with forward reads"/>
+        <param name="fastq_input2" type="data" format="fastqsanger" label="Select second set of reads" help="Specify dataset with reverse reads"/>
         <param name="index1" type="select" label="Novo-Align Index(FASTA format)">
             <options from_data_table="novocraft_index"/>
         </param>
